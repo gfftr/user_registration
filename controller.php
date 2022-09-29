@@ -46,5 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 //Login request is handled by this block
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
  //
-
+ $code = $_GET['code'];
+ $status = verify($code);
+ if ($status === 1) {
+  //
+  header('Location: http://localhost:8000/showVerificationStatus.html?status=verified');
+ } else {
+  //
+  header('Location: http://localhost:8000/showVerificationStatus.html?status=unsuccessful');
+ }
+ exit();
 }
